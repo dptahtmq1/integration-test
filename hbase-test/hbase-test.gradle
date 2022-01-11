@@ -1,0 +1,40 @@
+dependencies {
+    implementation(group: 'org.jetbrains.kotlin', name: 'kotlin-reflect')
+
+    implementation(group: 'org.apache.phoenix', name: 'phoenix-core', version: "${phoenixVersion}") {
+//        exclude group: 'org.eclipse.jetty', module: 'jetty-http'
+//        exclude group: 'org.eclipse.jetty', module: 'jetty-security'
+//        exclude group: 'org.eclipse.jetty', module: 'jetty-server'
+//        exclude group: 'org.eclipse.jetty', module: 'jetty-servlet'
+//        exclude group: 'org.eclipse.jetty', module: 'jetty-webapp'
+    }
+//    implementation "org.apache.phoenix:phoenix-hbase-compat-2.4.0:${phoenixVersion}"
+
+    implementation("org.apache.hbase:hbase-testing-util:${hbaseVersion}")
+    implementation("org.apache.hbase:hbase-common:${hbaseVersion}")
+    implementation("org.apache.hbase:hbase-server:${hbaseVersion}") {
+        exclude group: 'org.apache.hbase', module: 'hbase-common'
+    }
+    implementation("org.apache.hadoop:hadoop-hdfs:${hadoopVersion}")
+    implementation("org.apache.hadoop:hadoop-common:${hadoopVersion}")
+    implementation("org.apache.hadoop:hadoop-hdfs-client:${hadoopVersion}")
+
+    testImplementation(group: 'org.jetbrains.kotlin', name: 'kotlin-test')
+    testImplementation(group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit5')
+
+    testImplementation "org.apache.hbase:hbase-testing-util:${hbaseVersion}"
+
+    testImplementation(group: 'org.flywaydb', name: 'flyway-maven-plugin', version: "${flywayVersion}") {
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+        exclude group: 'org.slf4j', module: 'slf4j-jdk14'
+        exclude group: 'org.slf4j', module: 'slf4j-nop'
+        exclude group: 'org.slf4j', module: 'jcl-over-slf4j'
+        exclude group: 'com.google.protobuf'
+        exclude group: 'junit'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
