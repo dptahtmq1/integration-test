@@ -1,0 +1,27 @@
+dependencies {
+    implementation(group: 'org.jetbrains.kotlin', name: 'kotlin-reflect')
+
+    implementation(group: 'org.apache.phoenix', name: 'phoenix-core', version: "${phoenixVersion}")
+
+    testImplementation(group: 'org.jetbrains.kotlin', name: 'kotlin-test')
+    testImplementation(group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit5')
+
+    testImplementation "org.apache.hbase:hbase-testing-util:${hbaseVersion}"
+    testImplementation("org.apache.hadoop:hadoop-hdfs:${hadoopVersion}")
+    testImplementation("org.apache.hadoop:hadoop-common:${hadoopVersion}")
+    testImplementation("org.apache.hadoop:hadoop-hdfs-client:${hadoopVersion}")
+
+    testImplementation(group: 'org.flywaydb', name: 'flyway-maven-plugin', version: "${flywayVersion}") {
+        exclude group: 'org.slf4j', module: 'slf4j-api'
+        exclude group: 'org.slf4j', module: 'slf4j-jdk14'
+        exclude group: 'org.slf4j', module: 'slf4j-nop'
+        exclude group: 'org.slf4j', module: 'jcl-over-slf4j'
+        exclude group: 'com.google.protobuf'
+        exclude group: 'junit'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
