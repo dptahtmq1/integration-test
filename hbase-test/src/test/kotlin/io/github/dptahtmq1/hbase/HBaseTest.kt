@@ -19,7 +19,7 @@ class HBaseTest {
     }
 
     @Test
-    fun `should initialize HBase`() {
+    fun `should upsert and read`() {
         // Given
         val key = "test"
         val value = "value"
